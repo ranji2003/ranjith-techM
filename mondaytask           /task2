@@ -1,0 +1,23 @@
+package Program;
+
+public class JavaIO {
+static void pr() {
+	System.out.print("Hi ");
+	System.out.print("Hello");
+}
+static void prln() {
+	System.out.println("How are you");
+	System.out.println("where are you");
+}
+void err() {
+	System.err.println("Error");
+	System.err.println("Warning");
+}
+public static void main(String[] args) {
+	pr();
+	System.out.println();
+	prln();
+	JavaIO jv=new JavaIO();
+	jv.err();
+}
+}
