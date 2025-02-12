@@ -1,0 +1,21 @@
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println("From Main thread!");
+
+        // Creating and starting ThreadRunnableOne using Runnable
+        ThreadRunnableOne runnable1 = new ThreadRunnableOne();
+        Thread thread1 = new Thread(runnable1);
+        thread1.start(); // Start the thread (calls the run method of ThreadRunnableOne)
+    }
+
+    // Class ThreadRunnableOne implements Runnable
+    static class ThreadRunnableOne implements Runnable {
+        @Override
+        public void run() {
+            // Print two times from ThreadRunnableOne
+            System.out.println("From ThreadRunnableOne!");
+            System.out.println("From ThreadRunnableOne!");
+        }
+    }
+}
