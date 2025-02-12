@@ -1,0 +1,21 @@
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println("From Main thread!");
+
+        // Creating and starting the ThreadOne
+        MTask1ThreadOne t1 = new MTask1ThreadOne();
+        t1.start(); // Start the thread (calls the run method)
+    }
+
+    // Class ThreadOne extends Thread
+    static class MTask1ThreadOne extends Thread {
+        @Override
+        public void run() {
+            // Print three times from ThreadOne
+            System.out.println("From ThreadOne!");
+            System.out.println("From ThreadOne!");
+            System.out.println("From ThreadOne!");
+        }
+    }
+}
