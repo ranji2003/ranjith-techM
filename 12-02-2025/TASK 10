@@ -1,0 +1,45 @@
+import java.io.*;
+
+class Employee implements Serializable {
+    int Eno;
+    String Ename;
+    transient String email; // Marked as transient to prevent serialization of this field
+
+    // Constructor to initialize Employee object
+    Employee(int Eno, String Ename, String email) {
+        this.Eno = Eno;
+        this.Ename = Ename;
+        this.email = email;
+    }
+
+    // Method to display employee details
+    void display() {
+        System.out.println("Employee Number: " + Eno);
+        System.out.println("Employee Name: " + Ename);
+        System.out.println("Employee Email: " + email); // Will print null after deserialization
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        // Serialize the object
+        Employee emp = new Employee(101, "Manikandan", "mani@example.com");
+
+        // Creating streams for serialization
+        FileOutputStream fout = new FileOutputStream("employee.ser");
+        ObjectOutputStream out = new ObjectOutputStream(fout);
+        out.writeObject(emp); // Serialize the employee object
+        out.close();
+        System.out.println("Object Serialized");
+
+        // Deserialize the object
+        FileInputStream fin = new FileInputStream("employee.ser");
+        ObjectInputStream in = new ObjectInputStream(fin);
+        Employee deserializedEmp = (Employee) in.readObject(); // Deserialize the object
+        in.close();
+
+        // Display the deserialized object details
+        System.out.println("\nAfter Deserialization:");
+        deserializedEmp.display();
+    }
+}
