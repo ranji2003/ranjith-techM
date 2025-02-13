@@ -1,0 +1,44 @@
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Stack<Integer> stack1 = new Stack<>();
+
+        stack1.push(35);
+        stack1.push(23);
+        stack1.push(67);
+        stack1.push(82);
+        stack1.push(56);
+        stack1.push(49);
+        stack1.push(49);
+        stack1.push(49);
+
+        System.out.println("Number of elements in the stack: " + stack1.size());
+
+        // Adding one element (pushing)
+        stack1.push(12);
+        System.out.println("After adding one element:");
+        System.out.println("The given stack is: " + stack1);
+        System.out.println("The number of elements in the stack: " + stack1.size());
+
+        // Checking for an element (inefficiently - stacks aren't designed for this)
+        System.out.println("Is 566 available in the stack: " + stack1.contains(566)); //contains works, but is not ideal for stacks
+        System.out.println("The given stack before removing elements is: " + stack1);
+
+
+        // Removing elements (popping)
+        stack1.remove(2); // Remove by index
+        stack1.remove(3); // Remove by index
+
+        System.out.println("After removing elements:");
+        System.out.println("The given stack is: " + stack1);
+        System.out.println("The number of elements in the stack: " + stack1.size());
+
+         // Demonstrating proper stack usage (LIFO)
+        System.out.println("Popping elements:");
+        while (!stack1.isEmpty()) {
+            System.out.println(stack1.pop()); //pop removes and returns the top element
+        }
+        System.out.println("Stack is now empty: " + stack1.isEmpty());
+    }
+}
