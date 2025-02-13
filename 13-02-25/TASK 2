@@ -1,0 +1,78 @@
+import java.util.*;
+
+class Main {  // Class name changed to Main
+    public static void main(String a[]) {
+        // Creation of collections
+        HashSet<Integer> hsInt = new HashSet<>();
+        LinkedHashSet<String> lhsStr = new LinkedHashSet<>();
+        TreeSet<Float> tsFloat = new TreeSet<>();
+
+        // Initialize collections with at least 8 elements
+        hsInt.addAll(Arrays.asList(14, 21, 28, 35, 42, 49, 56, 63, 70));
+        lhsStr.addAll(Arrays.asList("Apple", "Banana", "Orange", "Grape", "Mango", "Pineapple", "Kiwi", "Strawberry", "Watermelon"));
+        tsFloat.addAll(Arrays.asList(11.1f, 22.2f, 33.3f, 44.4f, 55.5f, 66.6f, 77.7f, 88.8f, 99.9f));
+
+
+        // Invoke methods with appropriate collections
+        setSample(hsInt);
+        setSample(lhsStr);
+        setSample(tsFloat);
+    }
+
+    public static void setSample(HashSet<Integer> hs) {
+        System.out.println("HashSet (Integer) Size: " + hs.size());
+        System.out.println("Elements in HashSet (Integer): " + hs);
+
+        hs.remove(21);
+        System.out.println("HashSet (Integer) after removing 21: " + hs);
+
+        System.out.print("Elements divisible by 7: ");
+        int count = 0;
+        for (Integer element : hs) {
+            if (element % 7 == 0) {
+                System.out.print(element + " ");
+                count++;
+            }
+        }
+        System.out.println();
+        System.out.println("Number of elements after filtering (HashSet Integer): " + count);
+    }
+
+    public static void setSample(LinkedHashSet<String> lhs) {
+        System.out.println("LinkedHashSet (String) Size: " + lhs.size());
+        System.out.println("Elements in LinkedHashSet (String): " + lhs);
+
+        lhs.remove("Banana");
+        System.out.println("LinkedHashSet (String) after removing Banana: " + lhs);
+
+        System.out.print("Elements with size > 5: ");
+        int count = 0;
+        for (String element : lhs) {
+            if (element.length() > 5) {
+                System.out.print(element + " ");
+                count++;
+            }
+        }
+        System.out.println();
+        System.out.println("Number of elements after filtering (LinkedHashSet String): " + count);
+    }
+
+    public static void setSample(TreeSet<Float> ts) {
+        System.out.println("TreeSet (Float) Size: " + ts.size());
+        System.out.println("Elements in TreeSet (Float): " + ts);
+
+        ts.remove(33.3f);
+        System.out.println("TreeSet (Float) after removing 33.3f: " + ts);
+
+        System.out.print("Elements greater than 20: ");
+        int count = 0;
+        for (Float element : ts) {
+            if (element > 20) {
+                System.out.print(element + " ");
+                count++;
+            }
+        }
+        System.out.println();
+        System.out.println("Number of elements after filtering (TreeSet Float): " + count);
+    }
+}
