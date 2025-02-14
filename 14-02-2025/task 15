@@ -1,0 +1,16 @@
+function displayNumbersSkippingMultiplesOf5(start) {
+    let end = start + 50; // Ensure interval of 50
+    console.log(`Displaying numbers from ${start} to ${end}, skipping multiples of 5:`);
+
+    for (let i = start; i <= end; i++) {
+        if (i % 5 === 0) {
+            continue; // Skip multiples of 5
+        }
+        console.log(i);
+    }
+}
+
+// Example usage
+let firstNumber = parseInt(prompt("Enter the first number:"));
+displayNumbersSkippingMultiplesOf5(firstNumber);
+
