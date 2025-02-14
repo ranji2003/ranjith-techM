@@ -1,0 +1,18 @@
+function displayMultiples(firstNum, secondNum) {
+    let thirdNum = secondNum + 40; // Calculate third number
+    console.log(`Multiples of ${firstNum} from ${secondNum} to ${thirdNum}:`);
+    
+    let current = secondNum;
+    while (current <= thirdNum) {
+        if (current % firstNum === 0) {
+            console.log(current);
+        }
+        current++; // Increment to the next number
+    }
+}
+
+// Example usage
+let firstNumber = parseInt(prompt("Enter the first number:"));
+let secondNumber = parseInt(prompt("Enter the second number:"));
+
+displayMultiples(firstNumber, secondNumber);
