@@ -1,0 +1,4 @@
+let number = 5;
+let cube = number * number * number; 
+console.log("The cube of " + number + " is: " + cube);
+console.log(`The cube of ${number} is: ${cube}`);
