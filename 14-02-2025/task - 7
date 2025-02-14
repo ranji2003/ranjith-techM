@@ -1,0 +1,31 @@
+function getAndDisplayAge() {
+  let ageString = prompt("Please enter your age:");
+
+  if (ageString!== null) {
+    let age = Number(ageString);
+
+    if (isNaN(age) || age < 0) { // Check for invalid input (NaN or negative age)
+      alert("Invalid input. Please enter a valid positive number for your age.");
+    } else {
+      alert("You are " + age + " years old.");
+
+      // Example of additional logic (optional):
+      if (age >= 18) {
+        console.log("User is an adult."); // Log to console (useful for debugging)
+      } else {
+        console.log("User is a minor.");
+      }
+    }
+  } else {
+    console.log("User cancelled the age prompt.");
+  }
+}
+
+// Call the function to actually display the prompt and process the input.
+getAndDisplayAge();
+
+// Or, if you want to call it later (e.g., from a button click):
+/*
+let myButton = document.getElementById("myButton"); // Assuming you have a button with id="myButton"
+myButton.onclick = getAndDisplayAge;
+*/
