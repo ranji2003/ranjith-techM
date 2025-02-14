@@ -1,0 +1,23 @@
+function isDivisibleBy12(number) {
+  if (number % 12 === 0) {
+    console.log(number + " is divisible by 12.");
+    return true; // You can also return true if you need to use the result in other parts of your code.
+  } else {
+    console.log(number + " is not divisible by 12.");
+    return false; //  You can also return false if you need to use the result in other parts of your code.
+  }
+}
+
+// Example usage:
+isDivisibleBy12(24);  // Output: 24 is divisible by 12.
+isDivisibleBy12(35);  // Output: 35 is not divisible by 12.
+isDivisibleBy12(0); // Output: 0 is divisible by 12.  (0 is divisible by all numbers except 0 itself)
+isDivisibleBy12(-12); // Output: -12 is divisible by 12. (Negative numbers can also be divisible)
+
+// Another way to write it more concisely:
+function isDivisibleBy12Concise(number) {
+  return number % 12 === 0; // Returns true if divisible, false otherwise
+}
+
+console.log(isDivisibleBy12Concise(144)); // Output: true
+console.log(isDivisibleBy12Concise(125)); // Output: false
