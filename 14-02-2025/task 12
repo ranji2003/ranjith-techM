@@ -1,0 +1,12 @@
+function displayMultiplicationTable(base, limit) {
+    console.log(`Multiplication table of ${base} till ${limit}:`);
+    for (let i = 1; i <= limit; i++) {
+        console.log(`${base} * ${i} = ${base * i}`);
+    }
+}
+
+// Example usage
+let baseNumber = parseInt(prompt("Enter the base number:"));
+let limitNumber = parseInt(prompt("Enter the limit:"));
+
+displayMultiplicationTable(baseNumber, limitNumber);
