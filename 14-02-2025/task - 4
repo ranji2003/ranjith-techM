@@ -1,0 +1,7 @@
+let address = prompt("Please enter your address:");
+
+if (address !== null && address.trim() !== "") {
+  alert("Your address is: " + address);
+} else {
+  alert("Address not provided."); // Or handle the case where the user cancels/enters nothing
+}
