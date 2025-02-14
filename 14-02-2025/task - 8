@@ -1,0 +1,47 @@
+let tomatoPrices = [];
+
+// Loop to get prices for each day
+for (let i = 0; i < 7; i++) {
+  let day = "";
+  switch (i) {
+    case 0: day = "Monday"; break;
+    case 1: day = "Tuesday"; break;
+    case 2: day = "Wednesday"; break;
+    case 3: day = "Thursday"; break;
+    case 4: day = "Friday"; break;
+    case 5: day = "Saturday"; break;
+    case 6: day = "Sunday"; break;
+  }
+
+  let priceString = prompt("Enter the price of 1 kg tomato for " + day + ":");
+
+  // Input validation: Check if the user entered a valid number
+  let price = Number(priceString);
+  while (isNaN(price)) {
+    priceString = prompt("Invalid input. Please enter a number for the price on " + day + ":");
+    price = Number(priceString);
+  }
+  tomatoPrices.push(price);
+}
+
+// Calculate the average price
+let sum = 0;
+for (let i = 0; i < 7; i++) {
+  sum += tomatoPrices[i];
+}
+let averagePrice = sum / 7;
+
+// Display the average price (optional)
+alert("The average price of tomato is Rs. " + averagePrice.toFixed(2)); //toFixed to display 2 decimal places
+
+// Check for profit and display the result
+if (averagePrice > 50) {
+  alert("Tomato has given good profit.");
+} else {
+  alert("No profit from tomato.");
+}
+
+
+//For debugging or if you want to see the daily prices:
+console.log("Tomato Prices:", tomatoPrices);
+console.log("Average Price:", averagePrice);
