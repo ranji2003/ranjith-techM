@@ -1,0 +1,16 @@
+function displayNumbersWithStop(start) {
+    let end = start + 30; // Ensure interval of 30
+    console.log(`Displaying numbers from ${start} to ${end}, stopping at the first multiple of 7:`);
+
+    for (let i = start; i <= end; i++) {
+        if (i % 7 === 0) {
+            console.log(`Stopped at ${i} (multiple of 7)`);
+            break; // Exit the loop when a multiple of 7 is found
+        }
+        console.log(i);
+    }
+}
+
+// Example usage
+let firstNumber = parseInt(prompt("Enter the first number:"));
+displayNumbersWithStop(firstNumber);
