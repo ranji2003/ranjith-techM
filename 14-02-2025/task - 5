@@ -1,35 +1,10 @@
-// Prompt the user to enter their age.  The prompt() function returns a string.
-let ageString = prompt("Please enter your age:");
 
-// Check if the user entered anything at all (didn't just click "Cancel").
-if (ageString!== null) {
+let response = confirm("Are you going to the film today?");
 
-  // Try to convert the string to a number.  This is important because
-  // we might want to do calculations with the age later.  The Number()
-  // function will return NaN (Not a Number) if the string can't be
-  // converted to a number.
-  let age = Number(ageString);
 
-  // Check if the conversion was successful.  isNaN() returns true if the
-  // value is NaN, and false otherwise.
-  if (isNaN(age)) {
-    // The user entered something that wasn't a number.  Tell them.
-    alert("Invalid input. Please enter a number for your age.");
-  } else {
-    // The age is a valid number.  Display it to the user.
-    alert("You are " + age + " years old.");
-
-    // You can add more logic here based on the age, if needed.  For example:
-    /*
-    if (age >= 18) {
-      alert("You are an adult.");
-    } else {
-      alert("You are a minor.");
-    }
-    */
-  }
+if (response) {
+    alert("Great! Enjoy your movie.");
 } else {
-  // The user clicked "Cancel" on the prompt.  You can handle this case
-  // if you want (e.g., do nothing, or display a message).
-  console.log("User cancelled the age prompt."); // Or just leave this empty
+    alert("Maybe next time!");
 }
+
