@@ -1,0 +1,57 @@
+function checkNumber(number) {
+  if (number > 0) {
+    console.log(number + " is positive.");
+  } else if (number < 0) {
+    console.log(number + " is negative.");
+  } else {
+    console.log(number + " is zero.");
+  }
+}
+
+// Example usage:
+var myNumber = 10; // You can change this value to test different scenarios
+checkNumber(myNumber); // Output: 10 is positive.
+
+myNumber = -5;
+checkNumber(myNumber); // Output: -5 is negative.
+
+myNumber = 0;
+checkNumber(myNumber); // Output: 0 is zero.
+
+
+// More concise version using ternary operator:
+
+function checkNumberTernary(number) {
+  const result = number > 0 ? `${number} is positive` : (number < 0 ? `${number} is negative` : `${number} is zero`);
+  console.log(result);
+}
+
+checkNumberTernary(10); 
+checkNumberTernary(-5); 
+checkNumberTernary(0); 
+
+//  Demonstrating variable scope with 'var' (less recommended for modern JS):
+function demonstrateVarScope() {
+  var x = 10; 
+  if (true) {
+    var x = 20; // 'var' has function scope, so this re-declares the outer 'x'
+    console.log("Inside if block:", x); // Output: Inside if block: 20
+  }
+  console.log("Outside if block:", x); // Output: Outside if block: 20 (x was changed inside the block)
+}
+
+demonstrateVarScope();
+
+//  It's generally better to use 'let' or 'const' for variable declarations in modern JavaScript
+//  because they have block scope:
+
+function demonstrateLetScope() {
+  let y = 10;
+  if (true) {
+    let y = 20; // 'let' has block scope, so this creates a new variable 'y' within the block
+    console.log("Inside if block:", y); // Output: Inside if block: 20
+  }
+  console.log("Outside if block:", y); // Output: Outside if block: 10 (y was not changed outside the block)
+}
+
+demonstrateLetScope();
