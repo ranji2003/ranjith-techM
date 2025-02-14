@@ -1,0 +1,23 @@
+function checkYearAndMonth() {
+  const year = parseInt(prompt("Enter the year:"));
+  const month = parseInt(prompt("Enter the month (1 for January, 2 for February, etc.):"));
+
+  if (isNaN(year) || isNaN(month) || month < 1 || month > 12) {
+    alert("Invalid input. Please enter valid year and month.");
+    return; // Stop further execution
+  }
+
+  const isLeapYear = (year % 4 === 0 && year % 100!== 0) || year % 400 === 0;
+
+  if (isLeapYear) {
+    if (month === 2) {
+      alert("The year is a leap year and the month is February with 29 days.");
+    } else {
+      alert("The year is a leap year and the month is not February.");
+    }
+  } else {
+    alert("The given year is not a leap year.");
+  }
+}
+
+checkYearAndMonth(); // Call the function to execute the check
