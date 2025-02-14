@@ -1,0 +1,17 @@
+function evaluateMathScore(score) {
+    if (score === 100) {
+        console.log("Phenomenal!");
+    } else if (score > 85) {
+        console.log("Excellent!");
+    } else if (score >= 71) {
+        console.log("Good work!");
+    } else if (score >= 51) {
+        console.log("Practice well!");
+    } else {
+        console.log("Hard work is needed");
+    }
+}
+
+// Example usage
+let studentScore = parseInt(prompt("Enter the Maths score:"));
+evaluateMathScore(studentScore);
