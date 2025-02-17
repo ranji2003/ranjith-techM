@@ -1,0 +1,12 @@
+function displayMultiplicationTable() {
+    let number = 5; // Change this to any number you want
+    let limit = 10; // Change this to any limit you want
+
+    console.log(`Multiplication Table for ${number} up to ${limit}:`);
+    for (let i = 1; i <= limit; i++) {
+        console.log(`${number} x ${i} = ${number * i}`);
+    }
+}
+
+// Call the function
+displayMultiplicationTable();
