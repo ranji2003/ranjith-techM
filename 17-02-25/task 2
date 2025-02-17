@@ -1,0 +1,19 @@
+function findFactors(num) {
+    if (num <= 0) {
+        console.log("Please enter a positive integer.");
+        return;
+    }
+
+    let factors = [];
+    for (let i = 1; i <= num; i++) {
+        if (num % i === 0) {
+            factors.push(i);
+        }
+    }
+
+    console.log(`Factors of ${num}:`, factors.join(", "));
+}
+
+// Example usage
+findFactors(12);  // Output: Factors of 12: 1, 2, 3, 4, 6, 12
+findFactors(25);  // Output: Factors of 25: 1, 5, 25
