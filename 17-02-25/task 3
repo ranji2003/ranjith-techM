@@ -1,0 +1,15 @@
+function isSumEvenOrOdd(num) {
+    // Convert number to string, split into digits, convert back to numbers, and sum them up
+    let sum = num
+        .toString()
+        .split('')
+        .map(Number)
+        .reduce((acc, digit) => acc + digit, 0);
+
+    // Check if the sum is even or odd
+    return sum % 2 === 0 ? 'Even' : 'Odd';
+}
+
+// Example usage:
+console.log(isSumEvenOrOdd(1234)); // Output: 'Even' (1+2+3+4 = 10)
+console.log(isSumEvenOrOdd(567));  // Output: 'Odd'  (5+6+7 = 18)
