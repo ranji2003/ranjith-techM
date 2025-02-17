@@ -1,0 +1,70 @@
+let student = {
+    id: 101,
+    name: "Ranjith",
+    department: "ECE",
+    college: "Panimalar Institute of Technology",
+    email: "ranjith@example.com"
+};
+
+// Step 2: Function to display all properties of student
+function displayStudentDetails() {
+    console.log("Student Details:");
+    console.log("ID:", student.id);
+    console.log("Name:", student.name);
+    console.log("Department:", student.department);
+    console.log("College:", student.college);
+    console.log("Email:", student.email);
+}
+
+// Invoke the function
+displayStudentDetails();
+
+// Step 3: Function to display only id, name, and email
+function displayBasicDetails() {
+    console.log("Basic Student Details:");
+    console.log("ID:", student.id);
+    console.log("Name:", student.name);
+    console.log("Email:", student.email);
+}
+
+// Invoke the function
+displayBasicDetails();
+
+// Step 4: Add address property (as an object)
+student.address = {
+    doorNo: "12A",
+    street: "Anna Street",
+    area: "Chennai",
+    pincode: "600001"
+};
+
+// Step 5: Function to display student details including address
+function displayStudentWithAddress() {
+    console.log("Student Details with Address:");
+    console.log("ID:", student.id);
+    console.log("Name:", student.name);
+    console.log("Department:", student.department);
+    console.log("College:", student.college);
+    console.log("Address:");
+    console.log("Door No:", student.address.doorNo);
+    console.log("Street:", student.address.street);
+    console.log("Area:", student.address.area);
+    console.log("Pincode:", student.address.pincode);
+}
+
+// Invoke the function
+displayStudentWithAddress();
+
+// Step 6: Delete the email property
+delete student.email;
+
+// Step 7: Delete the function displayBasicDetails
+displayBasicDetails = undefined; // Or simply remove its definition if in a script
+
+console.log("\nAfter Deleting Email and Basic Details Function:");
+
+// Trying to invoke the deleted function (will cause an error if uncommented)
+// displayBasicDetails(); 
+
+// Display the student object after deletion
+console.log(student);
