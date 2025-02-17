@@ -1,0 +1,36 @@
+// Arrow functions for basic operations
+const add = (a, b) => `Sum: ${a + b}`;
+const subtract = (a, b) => `Difference: ${a - b}`;
+const multiply = (a, b) => `Product: ${a * b}`;
+const divide = (a, b) => 
+    b !== 0 ? `Quotient: ${Math.floor(a / b)}, Remainder: ${a % b}` : "Cannot divide by zero";
+
+// Arrow function to choose the operation
+const chooseOperation = () => {
+    const operation = prompt("Choose operation: add, subtract, multiply, divide").toLowerCase();
+    const num1 = parseFloat(prompt("Enter first number:"));
+    const num2 = parseFloat(prompt("Enter second number:"));
+
+    let result;
+    switch (operation) {
+        case "add":
+            result = add(num1, num2);
+            break;
+        case "subtract":
+            result = subtract(num1, num2);
+            break;
+        case "multiply":
+            result = multiply(num1, num2);
+            break;
+        case "divide":
+            result = divide(num1, num2);
+            break;
+        default:
+            result = "Invalid operation";
+    }
+
+    console.log(result);
+};
+
+// Call the function
+chooseOperation();
