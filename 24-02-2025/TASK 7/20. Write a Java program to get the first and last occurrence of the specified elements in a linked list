@@ -1,0 +1,34 @@
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a LinkedList and add elements
+        LinkedList<String> colors = new LinkedList<>();
+        colors.add("Red");
+        colors.add("Blue");
+        colors.add("Green");
+        colors.add("Yellow");
+        colors.add("Blue"); // Duplicate element
+        colors.add("Purple");
+
+        // Print the original list
+        System.out.println("LinkedList: " + colors);
+
+        // Element to search for
+        String searchElement = "Blue";
+
+        // Get first occurrence index
+        int firstIndex = colors.indexOf(searchElement);
+        // Get last occurrence index
+        int lastIndex = colors.lastIndexOf(searchElement);
+
+        // Display results
+        if (firstIndex != -1) {
+            System.out.println("First occurrence of '" + searchElement + "' is at index: " + firstIndex);
+            System.out.println("Last occurrence of '" + searchElement + "' is at index: " + lastIndex);
+        } else {
+            System.out.println("Element '" + searchElement + "' not found in the list.");
+        }
+    }
+}
+
