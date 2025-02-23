@@ -1,0 +1,57 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Get the file path from the user
+            System.out.print("Enter the file path: ");
+            String filePath = scanner.nextLine();
+
+            // Call the method to read and check numbers from the file
+            checkNumbersInFile(filePath);
+
+            System.out.println("All numbers in the file are non-positive.");
+        } catch (Exception e) {
+            // Handle the exception
+            System.out.println("Exception Caught: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+
+    // Method to read numbers from a file and throw an exception if a positive number is found
+    public static void checkNumbersInFile(String filePath) throws Exception {
+        File file = new File(filePath);
+
+        // Check if file exists
+        if (!file.exists()) {
+            throw new FileNotFoundException("The file at path '" + filePath + "' was not found.");
+        }
+
+        Scanner fileScanner = new Scanner(file);
+        System.out.println("\nNumbers in File:");
+
+        while (fileScanner.hasNext()) {
+            // Read each token and check if it's a number
+            if (fileScanner.hasNextDouble()) {
+                double number = fileScanner.nextDouble();
+                System.out.print(number + " ");
+
+                // Throw an exception if a positive number is found
+                if (number > 0) {
+                    fileScanner.close();
+                    throw new Exception("Positive number found: " + number);
+                }
+            } else {
+                // Skip non-numeric values
+                fileScanner.next();
+            }
+        }
+
+        fileScanner.close();
+    }
+}
