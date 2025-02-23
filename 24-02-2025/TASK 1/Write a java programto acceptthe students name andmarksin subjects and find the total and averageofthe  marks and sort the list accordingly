@@ -1,0 +1,76 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner SC = new Scanner(System.in);
+
+        
+        String[] names = new String[3];
+        int[] rollNumbers = new int[3];
+        int[][] marks = new int[3][3]; 
+        int[] totals = new int[3];
+        float[] averages = new float[3];
+
+        
+        for (int i = 0; i < 3; i++) {
+            System.out.println("\nEnter details for Student " + (i + 1) + ":");
+            System.out.print("Enter Name: ");
+            names[i] = SC.nextLine();
+            System.out.print("Enter Roll Number: ");
+            rollNumbers[i] = SC.nextInt();
+            System.out.print("Enter marks in Maths, Physics and English: ");
+            marks[i][0] = SC.nextInt(); 
+            marks[i][1] = SC.nextInt(); 
+            marks[i][2] = SC.nextInt(); 
+            SC.nextLine(); 
+            
+            
+            totals[i] = marks[i][0] + marks[i][1] + marks[i][2];
+            averages[i] = (float) totals[i] / 3; 
+        }
+
+        
+        List<Student> studentList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            studentList.add(new Student(names[i], rollNumbers[i], marks[i], totals[i], averages[i]));
+        }
+
+        
+        studentList.sort((s1, s2) -> Integer.compare(s2.total, s1.total));
+
+        
+        System.out.println("\nSorted Student Details (Based on Total Marks):");
+        System.out.println("--------------------------------------------------");
+        for (Student student : studentList) {
+            System.out.println(student);
+            System.out.println("--------------------------------------------------");
+        }
+    }
+}
+
+class Student {
+    String name;
+    int rollNumber;
+    int[] marks;
+    int total;
+    float average;
+
+    public Student(String name, int rollNumber, int[] marks, int total, float average) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.marks = marks;
+        this.total = total;
+        this.average = average;
+    }
+
+  
+    public String toString() {
+        return "Name: " + name + "\n" +
+               "Roll Number: " + rollNumber + "\n" +
+               "Marks (Maths, Physics, English): " + marks[0] + ", " + marks[1] + ", " + marks[2] + "\n" +
+               "Total: " + total + "\n" +
+               "Average: " + average;
+    }
+}
+
+
