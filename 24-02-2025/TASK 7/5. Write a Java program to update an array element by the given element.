@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an ArrayList and add elements
+        List<String> colors = new ArrayList<>();
+        colors.add("Red");
+        colors.add("Blue");
+        colors.add("Green");
+        colors.add("Yellow");
+        colors.add("Purple");
+
+        // Print the original list
+        System.out.println("Original ArrayList: " + colors);
+
+        // Take user input for index and new value
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter index to update: ");
+        int index = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter new element: ");
+        String newElement = scanner.nextLine();
+        scanner.close();
+
+        // Update the element if index is valid
+        if (index >= 0 && index < colors.size()) {
+            colors.set(index, newElement);
+            System.out.println("Updated ArrayList: " + colors);
+        } else {
+            System.out.println("Invalid index! Please enter an index between 0 and " + (colors.size() - 1));
+        }
+    }
+}
