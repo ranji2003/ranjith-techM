@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an ArrayList and add elements
+        List<String> colors = new ArrayList<>();
+        colors.add("Red");
+        colors.add("Blue");
+        colors.add("Green");
+        colors.add("Yellow");
+        colors.add("Purple");
+
+        // Print the original list
+        System.out.println("ArrayList: " + colors);
+
+        // Take user input for the element to search
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the element to search: ");
+        String searchElement = scanner.nextLine();
+        scanner.close();
+
+        // Search for the element
+        if (colors.contains(searchElement)) {
+            System.out.println("Element '" + searchElement + "' is found in the ArrayList.");
+        } else {
+            System.out.println("Element '" + searchElement + "' is NOT found in the ArrayList.");
+        }
+    }
+}
