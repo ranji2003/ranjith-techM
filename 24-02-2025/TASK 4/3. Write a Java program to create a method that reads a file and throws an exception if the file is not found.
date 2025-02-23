@@ -1,0 +1,43 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Get the file path from the user
+            System.out.print("Enter the file path: ");
+            String filePath = scanner.nextLine();
+
+            // Call the method to read the file
+            readFile(filePath);
+
+        } catch (FileNotFoundException e) {
+            // Handle the exception
+            System.out.println("Exception Caught: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+
+    // Method to read a file and throw an exception if the file is not found
+    public static void readFile(String filePath) throws FileNotFoundException {
+        File file = new File(filePath);
+
+        // Check if file exists
+        if (!file.exists()) {
+            throw new FileNotFoundException("The file at path '" + filePath + "' was not found.");
+        }
+
+        // Read and display file content
+        Scanner fileScanner = new Scanner(file);
+        System.out.println("\nFile Content:");
+        while (fileScanner.hasNextLine()) {
+            System.out.println(fileScanner.nextLine());
+        }
+
+        fileScanner.close();
+    }
+}
