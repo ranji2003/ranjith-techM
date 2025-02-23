@@ -1,0 +1,30 @@
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a LinkedList and add elements
+        LinkedList<String> colors = new LinkedList<>();
+        colors.add("Red");
+        colors.add("Blue");
+        colors.add("Green");
+        colors.add("Yellow");
+
+        // Print the original list
+        System.out.println("Original LinkedList: " + colors);
+
+        // Define the position and element to insert
+        int position = 2;  // Insert at index 2 (3rd position)
+        String newElement = "Purple";
+
+        // Check if position is valid
+        if (position < 0 || position > colors.size()) {
+            System.out.println("Invalid position! Please provide a valid index between 0 and " + colors.size());
+        } else {
+            // Insert the element at the specified position
+            colors.add(position, newElement);
+
+            // Print the updated list
+            System.out.println("Updated LinkedList: " + colors);
+        }
+    }
+}
