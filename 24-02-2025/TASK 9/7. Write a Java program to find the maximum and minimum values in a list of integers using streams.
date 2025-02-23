@@ -1,0 +1,24 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+public class Main {
+    public static void main(String[] args) {
+        // Sample List of Integers
+        List<Integer> numbers = Arrays.asList(10, 5, 20, 8, 15, 3, 25);
+
+        // Find Maximum Value
+        Optional<Integer> max = numbers.stream().max(Integer::compareTo);
+
+        // Find Minimum Value
+        Optional<Integer> min = numbers.stream().min(Integer::compareTo);
+
+        // Display Results
+        if (max.isPresent() && min.isPresent()) {
+            System.out.println("🔹 Maximum Value: " + max.get());
+            System.out.println("🔹 Minimum Value: " + min.get());
+        } else {
+            System.out.println("❌ List is empty. No min or max value.");
+        }
+    }
+}
