@@ -1,0 +1,131 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class Main {
+    // Database Connection Details
+    private static final String URL = "jdbc:mysql://localhost:3306/testdb"; // Change DB name if needed
+    private static final String USER = "root"; // Change according to your DB
+    private static final String PASSWORD = "password"; // Change to your MySQL password
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            while (true) {
+                // Display Menu
+                System.out.println("\n===== Employee Database Menu =====");
+                System.out.println("1. Insert a new Row");
+                System.out.println("2. Update a Row");
+                System.out.println("3. Delete a Row");
+                System.out.println("4. Select a Row");
+                System.out.println("5. Exit");
+                System.out.print("Enter your choice: ");
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                switch (choice) {
+                    case 1:
+                        insertRow(conn, scanner);
+                        break;
+                    case 2:
+                        updateRow(conn, scanner);
+                        break;
+                    case 3:
+                        deleteRow(conn, scanner);
+                        break;
+                    case 4:
+                        selectRow(conn, scanner);
+                        break;
+                    case 5:
+                        System.out.println("Exiting... Thank you!");
+                        return;
+                    default:
+                        System.out.println("❌ Invalid choice! Please select a valid option.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            scanner.close();
+        }
+    }
+
+    // Insert a new row into the database
+    private static void insertRow(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter Employee Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Employee Salary: ");
+        double salary = scanner.nextDouble();
+
+        String insertQuery = "INSERT INTO employees (name, salary) VALUES (?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
+            pstmt.setString(1, name);
+            pstmt.setDouble(2, salary);
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("✅ Employee added successfully!");
+            }
+        }
+    }
+
+    // Update an existing row in the database
+    private static void updateRow(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter Employee ID to update: ");
+        int empId = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter new Name: ");
+        String newName = scanner.nextLine();
+        System.out.print("Enter new Salary: ");
+        double newSalary = scanner.nextDouble();
+
+        String updateQuery = "UPDATE employees SET name = ?, salary = ? WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(updateQuery)) {
+            pstmt.setString(1, newName);
+            pstmt.setDouble(2, newSalary);
+            pstmt.setInt(3, empId);
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("✅ Employee record updated successfully!");
+            } else {
+                System.out.println("❌ Employee ID not found.");
+            }
+        }
+    }
+
+    // Delete a row from the database
+    private static void deleteRow(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter Employee ID to delete: ");
+        int empId = scanner.nextInt();
+
+        String deleteQuery = "DELETE FROM employees WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(deleteQuery)) {
+            pstmt.setInt(1, empId);
+            int rowsDeleted = pstmt.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("✅ Employee record deleted successfully!");
+            } else {
+                System.out.println("❌ Employee ID not found.");
+            }
+        }
+    }
+
+    // Select and display a row from the database
+    private static void selectRow(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter Employee ID to fetch details: ");
+        int empId = scanner.nextInt();
+
+        String selectQuery = "SELECT * FROM employees WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(selectQuery)) {
+            pstmt.setInt(1, empId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                System.out.println("\n===== Employee Details =====");
+                System.out.println("ID: " + rs.getInt("id"));
+                System.out.println("Name: " + rs.getString("name"));
+                System.out.println("Salary: " + rs.getDouble("salary"));
+            } else {
+                System.out.println("❌ Employee ID not found.");
+            }
+        }
+    }
+}
