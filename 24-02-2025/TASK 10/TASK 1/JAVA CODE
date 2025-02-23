@@ -1,0 +1,118 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class Main {
+    // JDBC URL, username, and password for MySQL database
+    private static final String URL = "jdbc:mysql://localhost:3306/your_database";
+    private static final String USER = "your_username";
+    private static final String PASSWORD = "your_password";
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            System.out.println("✅ Connected to the database!");
+
+            while (true) {
+                System.out.println("\n===== MENU =====");
+                System.out.println("1. Insert a new Row");
+                System.out.println("2. Read Table Data");
+                System.out.println("3. Update a Row");
+                System.out.println("4. Delete a Row");
+                System.out.println("5. Exit");
+                System.out.print("Choose an option: ");
+                int choice = scanner.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        insertRow(conn, scanner);
+                        break;
+                    case 2:
+                        readTable(conn);
+                        break;
+                    case 3:
+                        updateRow(conn, scanner);
+                        break;
+                    case 4:
+                        deleteRow(conn, scanner);
+                        break;
+                    case 5:
+                        System.out.println("✅ Exiting Program...");
+                        return;
+                    default:
+                        System.out.println("❌ Invalid option! Try again.");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Database connection error: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+
+    // Insert a new row into the table
+    private static void insertRow(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Age: ");
+        int age = scanner.nextInt();
+
+        String sql = "INSERT INTO employees (id, name, age) VALUES (?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.setString(2, name);
+            pstmt.setInt(3, age);
+            int rows = pstmt.executeUpdate();
+            System.out.println("✅ Inserted " + rows + " row(s) successfully!");
+        }
+    }
+
+    // Read and display all rows from the table
+    private static void readTable(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM employees";
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            System.out.println("\n===== EMPLOYEE RECORDS =====");
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("id") +
+                        ", Name: " + rs.getString("name") +
+                        ", Age: " + rs.getInt("age"));
+            }
+        }
+    }
+
+    // Update a row in the table
+    private static void updateRow(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter ID of the employee to update: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Enter new Name: ");
+        String newName = scanner.nextLine();
+        System.out.print("Enter new Age: ");
+        int newAge = scanner.nextInt();
+
+        String sql = "UPDATE employees SET name = ?, age = ? WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newName);
+            pstmt.setInt(2, newAge);
+            pstmt.setInt(3, id);
+            int rows = pstmt.executeUpdate();
+            System.out.println("✅ Updated " + rows + " row(s) successfully!");
+        }
+    }
+
+    // Delete a row from the table
+    private static void deleteRow(Connection conn, Scanner scanner) throws SQLException {
+        System.out.print("Enter ID of the employee to delete: ");
+        int id = scanner.nextInt();
+
+        String sql = "DELETE FROM employees WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            int rows = pstmt.executeUpdate();
+            System.out.println("✅ Deleted " + rows + " row(s) successfully!");
+        }
+    }
+}
