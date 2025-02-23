@@ -1,0 +1,74 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[][] matrixA = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        int[][] matrixB = {
+            {9, 8, 7},
+            {6, 5, 4},
+            {3, 2, 1}
+        };
+
+        int rows = matrixA.length;
+        int cols = matrixB[0].length;
+
+        int[][] resultMatrix = new int[rows][cols];
+
+        // Creating threads for each element in the result matrix
+        Thread[][] threads = new Thread[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                threads[i][j] = new Thread(new MatrixMultiplicationTask(matrixA, matrixB, resultMatrix, i, j));
+                threads[i][j].start();
+            }
+        }
+
+        // Waiting for all threads to complete
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                try {
+                    threads[i][j].join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Printing the result matrix
+        System.out.println("Resultant Matrix:");
+        for (int[] row : resultMatrix) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+}
+
+// Runnable task to compute each element in the result matrix
+class MatrixMultiplicationTask implements Runnable {
+    private int[][] matrixA;
+    private int[][] matrixB;
+    private int[][] resultMatrix;
+    private int row, col;
+
+    public MatrixMultiplicationTask(int[][] matrixA, int[][] matrixB, int[][] resultMatrix, int row, int col) {
+        this.matrixA = matrixA;
+        this.matrixB = matrixB;
+        this.resultMatrix = resultMatrix;
+        this.row = row;
+        this.col = col;
+    }
+
+    @Override
+    public void run() {
+        int sum = 0;
+        for (int k = 0; k < matrixB.length; k++) {
+            sum += matrixA[row][k] * matrixB[k][col];
+        }
+        resultMatrix[row][col] = sum;
+    }
+}
