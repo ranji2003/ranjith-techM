@@ -1,0 +1,11 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
+    <servlet>
+        <servlet-name>DisplayHtmlServlet</servlet-name>
+        <servlet-class>DisplayHtmlServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DisplayHtmlServlet</servlet-name>
+        <url-pattern>/displayHtml</url-pattern>
+    </servlet-mapping>
+</web-app>
