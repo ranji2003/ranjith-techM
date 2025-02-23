@@ -1,0 +1,26 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        // Sample List of Strings
+        List<String> words = Arrays.asList("banana", "apple", "cherry", "blueberry", "apricot");
+
+        // Sorting in Ascending Order
+        List<String> ascendingOrder = words.stream()
+                                           .sorted() // Default ascending order
+                                           .collect(Collectors.toList());
+
+        // Sorting in Descending Order
+        List<String> descendingOrder = words.stream()
+                                            .sorted(Comparator.reverseOrder()) // Reverse order sorting
+                                            .collect(Collectors.toList());
+
+        // Display Results
+        System.out.println("🔹 Original List: " + words);
+        System.out.println("🔹 Sorted (Ascending): " + ascendingOrder);
+        System.out.println("🔹 Sorted (Descending): " + descendingOrder);
+    }
+}
