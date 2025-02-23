@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an ArrayList and add elements
+        List<String> colors = new ArrayList<>();
+        colors.add("Red");
+        colors.add("Blue");
+        colors.add("Green");  // Third element (index 2)
+        colors.add("Yellow");
+        colors.add("Purple");
+
+        // Print the original list
+        System.out.println("Original ArrayList: " + colors);
+
+        // Check if the list has at least 3 elements before removing
+        if (colors.size() > 2) {
+            colors.remove(2); // Remove element at index 2 (third element)
+            System.out.println("Updated ArrayList after removing third element: " + colors);
+        } else {
+            System.out.println("The list does not have a third element to remove.");
+        }
+    }
+}
