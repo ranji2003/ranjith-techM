@@ -1,0 +1,37 @@
+import java.util.List;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        // List of integers
+        List<Integer> intList = Arrays.asList(10, 15, 20, 25, 30, 35);
+        // List of doubles
+        List<Double> doubleList = Arrays.asList(10.0, 15.5, 20.2, 25.1, 30.6, 35.7);
+
+        // Sum even and odd numbers for Integer list
+        System.out.println("Integer List: " + intList);
+        sumEvenOdd(intList);
+
+        // Sum even and odd numbers for Double list
+        System.out.println("\nDouble List: " + doubleList);
+        sumEvenOdd(doubleList);
+    }
+
+    // Generic method to calculate sum of even and odd numbers
+    public static <T extends Number> void sumEvenOdd(List<T> numbers) {
+        double evenSum = 0, oddSum = 0;
+
+        for (T num : numbers) {
+            int value = num.intValue(); // Convert to integer for even/odd check
+
+            if (value % 2 == 0) {
+                evenSum += num.doubleValue();
+            } else {
+                oddSum += num.doubleValue();
+            }
+        }
+
+        System.out.println("Sum of even numbers: " + evenSum);
+        System.out.println("Sum of odd numbers: " + oddSum);
+    }
+}
