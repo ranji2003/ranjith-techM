@@ -1,0 +1,25 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+public class Main {
+    public static void main(String[] args) {
+        // List of Integers
+        List<Integer> intList = Arrays.asList(1, 2, 3, 4, 5);
+        System.out.println("Original Integer List: " + intList);
+        System.out.println("Reversed Integer List: " + reverseList(intList));
+
+        // List of Strings
+        List<String> strList = Arrays.asList("apple", "banana", "cherry");
+        System.out.println("\nOriginal String List: " + strList);
+        System.out.println("Reversed String List: " + reverseList(strList));
+    }
+
+    // Generic method to reverse a list
+    public static <T> List<T> reverseList(List<T> list) {
+        List<T> reversedList = new ArrayList<>(list); // Copy original list
+        Collections.reverse(reversedList); // Reverse the list
+        return reversedList; // Return the reversed list
+    }
+}
