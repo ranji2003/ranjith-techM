@@ -1,0 +1,24 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Sample List of Strings
+        List<String> words = Arrays.asList("apple", "banana", "apricot", "cherry", "avocado", "blueberry");
+
+        // Get the starting letter from the user
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the letter to count words that start with it: ");
+        char letter = scanner.next().toLowerCase().charAt(0); // Convert to lowercase for case-insensitive matching
+        scanner.close();
+
+        // Count Strings That Start with the Given Letter
+        long count = words.stream()
+                          .filter(word -> word.toLowerCase().startsWith(String.valueOf(letter))) // Case-insensitive check
+                          .count();
+
+        // Display Result
+        System.out.println("🔹 Number of words starting with '" + letter + "': " + count);
+    }
+}
