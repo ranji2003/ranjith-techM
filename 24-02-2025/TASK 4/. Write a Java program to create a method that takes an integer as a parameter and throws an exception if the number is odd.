@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Get user input
+            System.out.print("Enter an integer: ");
+            int number = scanner.nextInt();
+
+            // Call the method to check if the number is odd
+            checkEvenNumber(number);
+
+            System.out.println("The number " + number + " is even. No exception thrown.");
+        } catch (Exception e) {
+            // Catch and print the exception
+            System.out.println("Exception Caught: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+
+    // Method to check if the number is odd and throw an exception
+    public static void checkEvenNumber(int num) throws Exception {
+        if (num % 2 != 0) {
+            throw new Exception("The number " + num + " is odd. Exception thrown!");
+        }
+    }
+}
