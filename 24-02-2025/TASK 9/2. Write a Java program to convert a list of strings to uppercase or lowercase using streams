@@ -1,0 +1,25 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        // Sample List of Strings
+        List<String> words = Arrays.asList("hello", "world", "java", "streams");
+
+        // Convert to Uppercase
+        List<String> uppercaseWords = words.stream()
+                                           .map(String::toUpperCase) // Convert to uppercase
+                                           .collect(Collectors.toList());
+
+        // Convert to Lowercase
+        List<String> lowercaseWords = words.stream()
+                                           .map(String::toLowerCase) // Convert to lowercase
+                                           .collect(Collectors.toList());
+
+        // Display Results
+        System.out.println("🔹 Original List: " + words);
+        System.out.println("🔹 Uppercase List: " + uppercaseWords);
+        System.out.println("🔹 Lowercase List: " + lowercaseWords);
+    }
+}
