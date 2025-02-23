@@ -1,0 +1,46 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class Main {
+    // Database URL, Username, and Password
+    private static final String URL = "jdbc:mysql://localhost:3306/testdb"; // Change DB name if needed
+    private static final String USER = "root"; // Change according to your DB
+    private static final String PASSWORD = "password"; // Change to your MySQL password
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            // Get input from user
+            System.out.print("Enter Employee ID to update: ");
+            int empId = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            System.out.print("Enter new name: ");
+            String newName = scanner.nextLine();
+
+            System.out.print("Enter new salary: ");
+            double newSalary = scanner.nextDouble();
+
+            // Update query using PreparedStatement
+            String updateQuery = "UPDATE employees SET name = ?, salary = ? WHERE id = ?";
+            try (PreparedStatement pstmt = conn.prepareStatement(updateQuery)) {
+                pstmt.setString(1, newName);
+                pstmt.setDouble(2, newSalary);
+                pstmt.setInt(3, empId);
+
+                int rowsUpdated = pstmt.executeUpdate();
+                if (rowsUpdated > 0) {
+                    System.out.println("✅ Employee record updated successfully!");
+                } else {
+                    System.out.println("❌ Employee ID not found. No record updated.");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            scanner.close();
+        }
+    }
+}
