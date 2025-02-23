@@ -1,0 +1,21 @@
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a LinkedList and add elements
+        LinkedList<String> colors = new LinkedList<>();
+        colors.add("Red");
+        colors.add("Blue");
+        colors.add("Green");
+
+        // Print the original list
+        System.out.println("Original LinkedList: " + colors);
+
+        // Insert elements at the first and last positions
+        colors.addFirst("Purple");  // Insert at the beginning
+        colors.addLast("Yellow");   // Insert at the end
+
+        // Print the updated list
+        System.out.println("Updated LinkedList: " + colors);
+    }
+}
