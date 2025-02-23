@@ -1,0 +1,19 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        // Sample List with Duplicates
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 2, 3, 6, 7, 8, 6, 9, 10);
+
+        // Removing Duplicates Using Streams
+        List<Integer> uniqueNumbers = numbers.stream()
+                                             .distinct() // Removes duplicates
+                                             .collect(Collectors.toList());
+
+        // Display Results
+        System.out.println("🔹 Original List: " + numbers);
+        System.out.println("🔹 List Without Duplicates: " + uniqueNumbers);
+    }
+}
