@@ -1,0 +1,32 @@
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a LinkedList and add elements
+        LinkedList<String> colors = new LinkedList<>();
+        colors.add("Red");
+        colors.add("Blue");
+        colors.add("Green");
+        colors.add("Yellow");
+        colors.add("Purple");
+
+        // Define the starting position (e.g., index 2)
+        int startIndex = 2;
+
+        // Check if index is valid
+        if (startIndex < 0 || startIndex >= colors.size()) {
+            System.out.println("Invalid index! Please provide a valid index between 0 and " + (colors.size() - 1));
+            return;
+        }
+
+        // Create a ListIterator starting from the specified index
+        ListIterator<String> iterator = colors.listIterator(startIndex);
+
+        // Print elements from the specified index onward
+        System.out.println("Iterating from index " + startIndex + ":");
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+}
