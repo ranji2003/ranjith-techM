@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create the first ArrayList and add elements
+        List<String> originalList = new ArrayList<>();
+        originalList.add("Red");
+        originalList.add("Blue");
+        originalList.add("Green");
+        originalList.add("Yellow");
+        originalList.add("Purple");
+
+        // Print the original list
+        System.out.println("Original ArrayList: " + originalList);
+
+        // Create another ArrayList of the same size and copy elements
+        List<String> copiedList = new ArrayList<>(Collections.nCopies(originalList.size(), ""));
+        Collections.copy(copiedList, originalList);
+
+        // Print the copied list
+        System.out.println("Copied ArrayList: " + copiedList);
+    }
+}
