@@ -1,0 +1,19 @@
+public class Main {
+    public static void main(String[] args) {
+        // Get the system console
+        java.io.Console console = System.console();
+
+        // Check if the console is available
+        if (console == null) {
+            System.out.println("No console available. Please run the program in a terminal.");
+            return;
+        }
+
+        // Read input from the console
+        String name = console.readLine("Enter your name: ");
+        String age = console.readLine("Enter your age: ");
+
+        // Display the entered input
+        System.out.println("\nHello, " + name + "! You are " + age + " years old.");
+    }
+}
