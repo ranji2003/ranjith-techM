@@ -1,0 +1,17 @@
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Code that may throw an exception
+            int result = divide(10, 0); // Division by zero
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            // Handling the exception
+            System.out.println("Exception Caught: " + e.getMessage());
+        }
+    }
+
+    // Method that throws an exception
+    public static int divide(int a, int b) {
+        return a / b; // This will throw ArithmeticException if b is 0
+    }
+}
