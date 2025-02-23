@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class Main {
+    private int empId;
+    private String empName;
+    private double sal; // Monthly salary
+    private int yearsWorked;
+
+    // Method to set employee details
+    public void setEmployeeDetails(int empId, String empName, double sal, int yearsWorked) {
+        this.empId = empId;
+        this.empName = empName;
+        this.sal = sal;
+        this.yearsWorked = yearsWorked;
+    }
+
+    // Method to get employee details
+    public void getEmployeeDetails() {
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Employee Name: " + empName);
+        System.out.println("Monthly Salary: " + sal);
+        System.out.println("Years Worked: " + yearsWorked);
+        System.out.println("Loan Eligibility: " + getLoanEligibility() + " lakhs");
+    }
+
+    // Method to check loan eligibility
+    public double getLoanEligibility() {
+        if (yearsWorked > 5) {
+            double annualSalary = sal * 12;
+            if (annualSalary >= 15_00_000) {
+                return 7;
+            } else if (annualSalary >= 10_00_000) {
+                return 5;
+            } else if (annualSalary >= 6_00_000) {
+                return 2;
+            }
+        }
+        return 0; // Not eligible
+    }
+
+    // Main method for program execution
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Getting employee details from user
+        System.out.print("Enter Employee ID: ");
+        int empId = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter Employee Name: ");
+        String empName = scanner.nextLine();
+        System.out.print("Enter Monthly Salary: ");
+        double sal = scanner.nextDouble();
+        System.out.print("Enter Years Worked: ");
+        int yearsWorked = scanner.nextInt();
+
+        // Creating an object of Main class
+        Main emp = new Main();
+        emp.setEmployeeDetails(empId, empName, sal, yearsWorked);
+
+        // Displaying employee details and loan eligibility
+        System.out.println("\nEmployee Details:");
+        emp.getEmployeeDetails();
+
+        scanner.close();
+    }
+}
