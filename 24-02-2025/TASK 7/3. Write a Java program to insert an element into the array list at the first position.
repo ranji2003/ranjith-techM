@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an ArrayList and add elements
+        List<String> colors = new ArrayList<>();
+        colors.add("Blue");
+        colors.add("Green");
+        colors.add("Yellow");
+        colors.add("Purple");
+
+        // Print original list
+        System.out.println("Original List: " + colors);
+
+        // Insert an element at the first position (index 0)
+        colors.add(0, "Red");
+
+        // Print updated list
+        System.out.println("Updated List after inserting 'Red' at first position: " + colors);
+    }
+}
