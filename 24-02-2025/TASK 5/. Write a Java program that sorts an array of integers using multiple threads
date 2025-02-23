@@ -1,0 +1,94 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] array = {12, 9, 3, 7, 14, 11, 6, 2, 10, 5};
+
+        System.out.println("Original Array: " + Arrays.toString(array));
+
+        // Sorting the array using multiple threads
+        MultiThreadMergeSort sorter = new MultiThreadMergeSort(array);
+        sorter.sort();
+
+        System.out.println("Sorted Array: " + Arrays.toString(array));
+    }
+}
+
+// Class for multi-threaded merge sort
+class MultiThreadMergeSort {
+    private int[] array;
+
+    public MultiThreadMergeSort(int[] array) {
+        this.array = array;
+    }
+
+    public void sort() {
+        mergeSort(array, 0, array.length - 1);
+    }
+
+    private void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+
+            // Creating two threads to sort left and right halves
+            Thread leftThread = new Thread(() -> mergeSort(arr, left, mid));
+            Thread rightThread = new Thread(() -> mergeSort(arr, mid + 1, right));
+
+            // Start both threads
+            leftThread.start();
+            rightThread.start();
+
+            try {
+                // Wait for both threads to finish
+                leftThread.join();
+                rightThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Merge the sorted halves
+            merge(arr, left, mid, right);
+        }
+    }
+
+    private void merge(int[] arr, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        int[] leftArr = new int[n1];
+        int[] rightArr = new int[n2];
+
+        // Copy data to temp arrays
+        for (int i = 0; i < n1; i++)
+            leftArr[i] = arr[left + i];
+        for (int i = 0; i < n2; i++)
+            rightArr[i] = arr[mid + 1 + i];
+
+        int i = 0, j = 0, k = left;
+
+        // Merge the temp arrays
+        while (i < n1 && j < n2) {
+            if (leftArr[i] <= rightArr[j]) {
+                arr[k] = leftArr[i];
+                i++;
+            } else {
+                arr[k] = rightArr[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements
+        while (i < n1) {
+            arr[k] = leftArr[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = rightArr[j];
+            j++;
+            k++;
+        }
+    }
+}
