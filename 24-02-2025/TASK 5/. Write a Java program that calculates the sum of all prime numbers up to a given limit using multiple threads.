@@ -1,0 +1,94 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        int limit = 100; // Change this limit as needed
+        int numThreads = 4; // Number of threads to use
+
+        PrimeSumCalculator calculator = new PrimeSumCalculator(limit, numThreads);
+        long totalSum = calculator.calculateSum();
+
+        System.out.println("Sum of prime numbers up to " + limit + " is: " + totalSum);
+    }
+}
+
+// Class to handle multi-threaded prime sum calculation
+class PrimeSumCalculator {
+    private int limit;
+    private int numThreads;
+    private long totalSum = 0;
+
+    public PrimeSumCalculator(int limit, int numThreads) {
+        this.limit = limit;
+        this.numThreads = numThreads;
+    }
+
+    public long calculateSum() {
+        List<Thread> threads = new ArrayList<>();
+        List<PrimeSumTask> tasks = new ArrayList<>();
+
+        int rangeSize = limit / numThreads; // Divide the range equally
+
+        for (int i = 0; i < numThreads; i++) {
+            int start = i * rangeSize + 1;
+            int end = (i == numThreads - 1) ? limit : (start + rangeSize - 1);
+
+            PrimeSumTask task = new PrimeSumTask(start, end);
+            tasks.add(task);
+
+            Thread thread = new Thread(task);
+            threads.add(thread);
+            thread.start();
+        }
+
+        // Wait for all threads to complete
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Combine results from all threads
+        for (PrimeSumTask task : tasks) {
+            totalSum += task.getPartialSum();
+        }
+
+        return totalSum;
+    }
+}
+
+// Runnable task to calculate the sum of primes in a given range
+class PrimeSumTask implements Runnable {
+    private int start, end;
+    private long partialSum = 0;
+
+    public PrimeSumTask(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    public void run() {
+        for (int i = start; i <= end; i++) {
+            if (isPrime(i)) {
+                partialSum += i;
+            }
+        }
+    }
+
+    public long getPartialSum() {
+        return partialSum;
+    }
+
+    // Method to check if a number is prime
+    private boolean isPrime(int num) {
+        if (num < 2) return false;
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+}
