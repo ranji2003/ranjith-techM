@@ -1,0 +1,44 @@
+// Step 1: Create student object with properties & method
+let student = {
+    name: "Ranjith",
+    age: 22,
+    course: "Computer Science",
+    
+    // Method to display student details
+    getDetails: function() {
+        return `Name: ${this.name}, Age: ${this.age}, Course: ${this.course}`;
+    }
+};
+
+// Step 2: Access properties and method
+console.log("🔹 Initial Student Object:");
+console.log(student.getDetails());
+
+// Step 3: Add nested object and new methods
+student.address = {
+    city: "Chennai",
+    state: "Tamil Nadu",
+    country: "India"
+};
+
+student.updateCourse = function(newCourse) {
+    this.course = newCourse;
+    console.log(`✅ Course updated to: ${this.course}`);
+};
+
+student.getAddress = function() {
+    return `Address: ${this.address.city}, ${this.address.state}, ${this.address.country}`;
+};
+
+// Step 4: Access new properties and methods
+console.log("\n🔹 After Adding Nested Object & New Methods:");
+console.log(student.getDetails());
+console.log(student.getAddress());
+student.updateCourse("Artificial Intelligence");
+
+// Step 5: Remove a property and a method
+delete student.age;
+delete student.getDetails;
+
+console.log("\n🔹 After Removing 'age' and 'getDetails' Method:");
+console.log(student); // Display the final object details
