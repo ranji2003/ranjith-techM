@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an ArrayList and add elements
+        List<String> colors = new ArrayList<>();
+        colors.add("Red");
+        colors.add("Blue");
+        colors.add("Green");
+        colors.add("Yellow");
+        colors.add("Purple");
+
+        // 1. Iterating using a normal for loop
+        System.out.println("Iteration using for loop:");
+        for (int i = 0; i < colors.size(); i++) {
+            System.out.println(colors.get(i));
+        }
+
+        // 2. Iterating using an enhanced for loop (for-each)
+        System.out.println("\nIteration using for-each loop:");
+        for (String color : colors) {
+            System.out.println(color);
+        }
+
+        // 3. Iterating using an Iterator
+        System.out.println("\nIteration using Iterator:");
+        Iterator<String> iterator = colors.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+
+        // 4. Iterating using Java 8 Stream API (Lambda expression)
+        System.out.println("\nIteration using Stream API:");
+        colors.stream().forEach(System.out::println);
+    }
+}
