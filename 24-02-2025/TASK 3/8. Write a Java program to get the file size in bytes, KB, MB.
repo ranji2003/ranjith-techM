@@ -1,0 +1,35 @@
+import java.io.File;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get file path from user
+        System.out.print("Enter the file path: ");
+        String filePath = scanner.nextLine();
+
+        // Create File object
+        File file = new File(filePath);
+
+        // Check if file exists
+        if (file.exists() && file.isFile()) {
+            // Get file size in bytes
+            long fileSizeBytes = file.length();
+
+            // Convert to KB and MB
+            double fileSizeKB = fileSizeBytes / 1024.0;
+            double fileSizeMB = fileSizeKB / 1024.0;
+
+            // Display file sizes
+            System.out.println("\nFile Size:");
+            System.out.println("Bytes: " + fileSizeBytes + " B");
+            System.out.printf("Kilobytes: %.2f KB\n", fileSizeKB);
+            System.out.printf("Megabytes: %.2f MB\n", fileSizeMB);
+        } else {
+            System.out.println("The specified file does not exist or is not a file.");
+        }
+
+        scanner.close();
+    }
+}
