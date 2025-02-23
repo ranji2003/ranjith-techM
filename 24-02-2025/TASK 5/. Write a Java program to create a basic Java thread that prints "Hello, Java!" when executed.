@@ -1,0 +1,16 @@
+public class Main {
+    public static void main(String[] args) {
+        // Creating a thread instance
+        MyThread thread = new MyThread();
+        
+        // Starting the thread
+        thread.start();
+    }
+}
+
+// Thread class extending Thread
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Hello, Java!");
+    }
+}
