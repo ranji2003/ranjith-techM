@@ -1,0 +1,24 @@
+// Defining the Game class
+class Game {
+    // Instance variable to store the game name
+    private String name;
+
+    // Constructor to initialize the game name
+    public Game(String name) {
+        this.name = name;
+    }
+
+    // Method to display the game name
+    public void displayGame() {
+        System.out.println("The game is: " + name);
+    }
+
+    // Main method to run the program
+    public static void main(String[] args) {
+        // Creating an object of the Game class with a game name
+        Game myGame = new Game("Chess");
+
+        // Calling the method to display the game name
+        myGame.displayGame();
+    }
+}
