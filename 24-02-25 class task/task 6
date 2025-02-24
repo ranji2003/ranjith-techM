@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Training Topics</title>
+    <!-- ✅ React & ReactDOM CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- ✅ Babel for JSX support -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- ✅ Root div for React rendering -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // ✅ Java Component
+        function Java() {
+            return <p><strong>Java:</strong> A high-level, object-oriented programming language.</p>;
+        }
+
+        // ✅ JavaScript Component
+        function JavaScript() {
+            return <p><strong>JavaScript:</strong> A versatile scripting language for web development.</p>;
+        }
+
+        // ✅ React Component
+        function ReactJS() {
+            return <p><strong>React:</strong> A JavaScript library for building user interfaces.</p>;
+        }
+
+        // ✅ Angular Component
+        function Angular() {
+            return <p><strong>Angular:</strong> A TypeScript-based framework for web applications.</p>;
+        }
+
+        // ✅ Training Component (Contains all topics)
+        function Training() {
+            return (
+                <div>
+                    <h1>Topics for Training</h1>
+                    <Java />
+                    <JavaScript />
+                    <ReactJS />
+                    <Angular />
+                </div>
+            );
+        }
+
+        // ✅ Rendering the Training component inside #root
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Training />);
+    </script>
+</body>
+</html>
