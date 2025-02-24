@@ -1,0 +1,14 @@
+class Animal {
+    // Function to display the animal name
+    public void displayAnimal(String name) {
+        System.out.println("The animal is: " + name);
+    }
+
+    public static void main(String[] args) {
+        // Creating an object of the Animal class
+        Animal animal = new Animal();
+        
+        // Calling the function with an animal name
+        animal.displayAnimal("Tiger");
+    }
+}
