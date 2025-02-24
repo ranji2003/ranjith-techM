@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Multiple Divs</title>
+    <!-- ✅ React & ReactDOM CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- ✅ Babel CDN for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- ✅ Three divs for rendering React elements -->
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+
+    <script type="text/babel">
+        // ✅ Render <h2> in first div
+        ReactDOM.createRoot(document.getElementById('div1')).render(
+            <h2>This is an H2 Heading</h2>
+        );
+
+        // ✅ Render <h4> in second div
+        ReactDOM.createRoot(document.getElementById('div2')).render(
+            <h4>This is an H4 Heading</h4>
+        );
+
+        // ✅ Render <p> in third div
+        ReactDOM.createRoot(document.getElementById('div3')).render(
+            <p>This is a paragraph rendered by React.</p>
+        );
+    </script>
+</body>
+</html>
