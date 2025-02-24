@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Class Component with Props</title>
+    <!-- ✅ React & ReactDOM CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- ✅ Babel for JSX support -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- ✅ Root div for React rendering -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // ✅ Class Component with Props
+        class Course extends React.Component {
+            render() {
+                return <h2>The course name is {this.props.name} 📚</h2>;
+            }
+        }
+
+        function App() {
+            return <Course name="Information Technology" />;
+        }
+
+        // ✅ Rendering the App component inside #root
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+      
