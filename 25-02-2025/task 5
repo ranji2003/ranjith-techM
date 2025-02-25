@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Check - React</title>
+    
+    <!-- ✅ React 18 and Babel CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function FlowerCheck() {
+            const flowers = ["Rose", "Jasmine", "Lotus"]; // ✅ Flower array
+            const [input, setInput] = React.useState(""); // ✅ State for input
+            const [resultIfElse, setResultIfElse] = React.useState("");
+            const [resultLogical, setResultLogical] = React.useState("");
+            const [resultTernary, setResultTernary] = React.useState("");
+
+            const checkFlower = () => {
+                const isFlower = flowers.includes(input);
+
+                // ✅ If-Else Condition
+                if (isFlower) {
+                    setResultIfElse(`"${input}" is a flower (if-else)`);
+                } else {
+                    setResultIfElse(`"${input}" is NOT a flower (if-else)`);
+                }
+
+                // ✅ Logical && Condition
+                setResultLogical(isFlower && `"${input}" is a flower (&&)` || `"${input}" is NOT a flower (&&)"`);
+
+                // ✅ Ternary Operator
+                setResultTernary(isFlower 
+                    ? `"${input}" is a flower (Ternary)` 
+                    : `"${input}" is NOT a flower (Ternary)`);
+            };
+
+            return (
+                <div>
+                    <h2>Flower Check</h2>
+                    <p>Available Flowers: {flowers.join(", ")}</p>
+                    <input 
+                        type="text" 
+                        placeholder="Enter a flower name" 
+                        value={input} 
+                        onChange={(e) => setInput(e.target.value)}
+                    />
+                    <button onClick={checkFlower}>Check</button>
+                    <p><b>Result (if-else):</b> {resultIfElse}</p>
+                    <p><b>Result (&&):</b> {resultLogical}</p>
+                    <p><b>Result (Ternary):</b> {resultTernary}</p>
+                </div>
+            );
+        }
+
+        // ✅ React 18 - Using createRoot()
+        const container = document.getElementById("root");
+        const root = ReactDOM.createRoot(container);
+        root.render(<FlowerCheck />);
+    </script>
+</body>
+</html>
