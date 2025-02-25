@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisibility Check</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function DivisibilityChecker() {
+            const [number, setNumber] = React.useState("");
+            const [result, setResult] = React.useState("");
+
+            const checkDivisibility = () => {
+                const num = parseInt(number);
+
+                // Using if condition
+                if (num % 13 === 0) {
+                    setResult(`${num} is divisible by 13 (if condition).`);
+                } else {
+                    setResult(`${num} is not divisible by 13 (if condition).`);
+                }
+
+                // Using logical && operator
+                num % 13 === 0 && setResult(`${num} is divisible by 13 (&& condition).`);
+
+                // Using ternary operator
+                setResult(num % 13 === 0 
+                    ? `${num} is divisible by 13 (ternary condition).` 
+                    : `${num} is not divisible by 13 (ternary condition).`);
+            };
+
+            return (
+                <div style={{ textAlign: "center", marginTop: "20px" }}>
+                    <h2>Check if a Number is Divisible by 13</h2>
+                    <input 
+                        type="number" 
+                        value={number} 
+                        onChange={(e) => setNumber(e.target.value)} 
+                        placeholder="Enter a number"
+                    />
+                    <button onClick={checkDivisibility}>Check</button>
+                    <p>{result}</p>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<DivisibilityChecker />);
+    </script>
+</body>
+</html>
