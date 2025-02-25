@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Conditional Rendering</title>
+    
+    <!-- ✅ Updated React 18 and Babel CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ✅ This is where React will render the output -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function StringLengthCheck() {
+            const str = "ReactJS"; // ✅ You can change this string
+            const length = str.length;
+            
+            // ✅ If-Else Condition
+            let resultIfElse;
+            if (length % 2 === 0) {
+                resultIfElse = "Even (if-else)";
+            } else {
+                resultIfElse = "Odd (if-else)";
+            }
+
+            // ✅ Logical && Condition
+            const resultLogical = (length % 2 === 0 && "Even (&&)") || "Odd (&&)";
+
+            // ✅ Ternary Operator
+            const resultTernary = length % 2 === 0 ? "Even (Ternary)" : "Odd (Ternary)";
+
+            return (
+                <div>
+                    <h2>String: {str}</h2>
+                    <p>Length: {length}</p>
+                    <p><b>Result (if-else):</b> {resultIfElse}</p>
+                    <p><b>Result (&&):</b> {resultLogical}</p>
+                    <p><b>Result (Ternary):</b> {resultTernary}</p>
+                </div>
+            );
+        }
+
+        // ✅ React 18 - Using createRoot()
+        const container = document.getElementById("root");
+        const root = ReactDOM.createRoot(container);
+        root.render(<StringLengthCheck />);
+    </script>
+</body>
+</html>
