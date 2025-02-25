@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Vowel Check</title>
+    
+    <!-- ✅ React 18 and Babel CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function VowelCheck() {
+            const str = "ReactJS"; // ✅ Change this string to test
+            const vowels = /[aeiouAEIOU]/;
+            const hasVowel = vowels.test(str); // ✅ Checks if the string contains any vowels
+
+            // ✅ If-Else Condition
+            let resultIfElse;
+            if (hasVowel) {
+                resultIfElse = "The string contains at least one vowel (if-else)";
+            } else {
+                resultIfElse = "The string does NOT contain any vowels (if-else)";
+            }
+
+            // ✅ Logical && Condition
+            const resultLogical = hasVowel && "The string contains at least one vowel (&&)" || 
+                                  "The string does NOT contain any vowels (&&)";
+
+            // ✅ Ternary Operator
+            const resultTernary = hasVowel 
+                ? "The string contains at least one vowel (Ternary)" 
+                : "The string does NOT contain any vowels (Ternary)";
+
+            return (
+                <div>
+                    <h2>String: "{str}"</h2>
+                    <p><b>Result (if-else):</b> {resultIfElse}</p>
+                    <p><b>Result (&&):</b> {resultLogical}</p>
+                    <p><b>Result (Ternary):</b> {resultTernary}</p>
+                </div>
+            );
+        }
+
+        // ✅ React 18 - Using createRoot()
+        const container = document.getElementById("root");
+        const root = ReactDOM.createRoot(container);
+        root.render(<VowelCheck />);
+    </script>
+</body>
+</html>
