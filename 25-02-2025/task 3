@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Conditional Rendering</title>
+    
+    <!-- ✅ React 18 and Babel CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function ArrayLengthCheck() {
+            const arr = [9, 4, 24]; // ✅ Change this array as needed
+            const length = arr.length;
+            
+            // ✅ If-Else Condition
+            let resultIfElse;
+            if (length % 3 === 0) {
+                resultIfElse = "The number of elements in the array is a multiple of 3 (if-else)";
+            } else {
+                resultIfElse = "The number of elements in the array is NOT a multiple of 3 (if-else)";
+            }
+
+            // ✅ Logical && Condition
+            const resultLogical = (length % 3 === 0 && "The number of elements in the array is a multiple of 3 (&&)") || 
+                                  "The number of elements in the array is NOT a multiple of 3 (&&)";
+
+            // ✅ Ternary Operator
+            const resultTernary = length % 3 === 0 
+                ? "The number of elements in the array is a multiple of 3 (Ternary)" 
+                : "The number of elements in the array is NOT a multiple of 3 (Ternary)";
+
+            return (
+                <div>
+                    <h2>Array: [{arr.join(", ")}]</h2>
+                    <p>Length: {length}</p>
+                    <p><b>Result (if-else):</b> {resultIfElse}</p>
+                    <p><b>Result (&&):</b> {resultLogical}</p>
+                    <p><b>Result (Ternary):</b> {resultTernary}</p>
+                </div>
+            );
+        }
+
+        // ✅ React 18 - Using createRoot()
+        const container = document.getElementById("root");
+        const root = ReactDOM.createRoot(container);
+        root.render(<ArrayLengthCheck />);
+    </script>
+</body>
+</html>
