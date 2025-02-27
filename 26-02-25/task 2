@@ -1,0 +1,51 @@
+import React, { useState } from 'react';
+
+function GovernmentOfferEligibility() {
+  const [hasAadhar, setHasAadhar] = useState(false);
+  const [hasPan, setHasPan] = useState(false);
+  const [result, setResult] = useState('');
+
+  const checkCards = () => {
+    // Use logical OR (||) to check if the user has either Aadhaar or PAN card
+    if (hasAadhar || hasPan) {
+      const cards = [];
+      if (hasAadhar) cards.push("Aadhaar card");
+      if (hasPan) cards.push("PAN card");
+      setResult(The user has the following card(s): ${cards.join(" and ")});
+    } else {
+      setResult("The user does not have any government card.");
+    }
+  };
+
+  return (
+    <div>
+      <h1>Check Available Cards for Government Offer</h1>
+      
+      <label>
+        Do you have an Aadhaar card?
+        <input
+          type="checkbox"
+          checked={hasAadhar}
+          onChange={(e) => setHasAadhar(e.target.checked)}
+        />
+      </label>
+      <br />
+      
+      <label>
+        Do you have a PAN card?
+        <input
+          type="checkbox"
+          checked={hasPan}
+          onChange={(e) => setHasPan(e.target.checked)}
+        />
+      </label>
+      <br />
+      
+      <button onClick={checkCards}>Check Cards</button>
+      
+      <p>{result}</p>
+    </div>
+  );
+}
+
+export default GovernmentOfferEligibility;
