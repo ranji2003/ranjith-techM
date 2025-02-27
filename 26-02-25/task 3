@@ -1,0 +1,27 @@
+import React from 'react';
+
+function StudentList() {
+  // Array of student objects with their department details
+  const students = [
+    { name: 'Manikandan', department: 'IT' },
+    { name: 'Vishal', department: 'CSE' },
+    { name: 'Harshith', department: 'ECE' },
+    { name: 'Aaditya', department: 'ECE' },
+    { name: 'Ranjith', department: 'ECE' },
+  ];
+
+  return (
+    <div>
+      <h1>Student List with Department Details</h1>
+      <ul>
+        {students.map((student, index) => (
+          <li key={index}>
+            <strong>{student.name}</strong> - {student.department}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default StudentList;
