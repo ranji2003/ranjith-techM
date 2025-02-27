@@ -1,0 +1,37 @@
+import React, { useState } from 'react';
+
+function DivisibleBy16Checker() {
+  const [number, setNumber] = useState('');
+  const [result, setResult] = useState('');
+
+  const handleInputChange = (event) => {
+    setNumber(event.target.value);
+  };
+
+  const checkDivisibility = () => {
+    const num = parseInt(number, 10); // Convert the input to an integer
+    if (isNaN(num)) {
+      setResult('Please enter a valid number.');
+    } else if (num % 16 === 0) {
+      setResult(${num} is divisible by 16.);
+    } else {
+      setResult(${num} is not divisible by 16.);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Check if a Number is Divisible by 16</h1>
+      <input
+        type="text"
+        value={number}
+        onChange={handleInputChange}
+        placeholder="Enter a number"
+      />
+      <button onClick={checkDivisibility}>Check</button>
+      <p>{result}</p>
+    </div>
+  );
+}
+
+export default DivisibleBy16Checker;
